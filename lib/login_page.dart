@@ -3,9 +3,9 @@ import 'package:get/get.dart';
 import 'signup_page.dart';
 import 'dashboard_page.dart';
 
-void main() {
-  runApp(MyApp());
-}
+// void main() {
+//   runApp(MyApp());
+// }
 
 class MyApp extends StatelessWidget {
   @override
