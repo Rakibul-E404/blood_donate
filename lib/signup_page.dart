@@ -177,13 +177,20 @@
 //                   decoration: InputDecoration(labelText: 'Blood Group'),
 //                 ),
 //                 SizedBox(height: 10.0),
+//
 //                 DropdownButtonFormField<String>(
 //                   value: selectedDivision,
 //                   onChanged: (String? newValue) {
 //                     if (newValue == "Select your division") {
 //                       districts.clear();
+//                       upazilas.clear();
+//                       setState(() {
+//
+//                       });
 //                     } else {
 //                       districts.clear();
+//                       upazilas.clear();
+//
 //                       if (data[newValue]?.keys != null ||
 //                           data[newValue]?.keys.isNotEmpty) {
 //                         districts.addAll(data[newValue]?.keys ?? []);
@@ -191,6 +198,8 @@
 //                     }
 //                     setState(() {
 //                       selectedDivision = newValue!;
+//                       selectDistrict = 'Select your districts';
+//                       // selectedDivision = 'Select your districts';
 //                     });
 //                   },
 //                   items: [
@@ -208,14 +217,21 @@
 //
 //                 districts.isEmpty
 //                     ? Container()
-//                     : DropdownButtonFormField<String>(
+//                     : DropdownButtonFormField<String>(  ///district
 //                   value: selectDistrict,
 //                   onChanged: (String? newValue) {
 //                     upazilas = [];
+//                     upazilas.clear();
 //                     selectDistrict = newValue!;
 //                     upazilas.addAll(data[selectedDivision][selectDistrict].cast<String>());
-//                     setState(() {});
+//                     // setState(() {});
+//                   setState(() {
+//                     selectDistrict = newValue;
+//                     selectUpazila = 'Select your upazila';
+//
+//                   });
 //                   },
+//
 //                   items: [
 //                     'Select your districts', // Initial text
 //                     ...districts,
@@ -233,12 +249,15 @@
 //
 //                 upazilas.isEmpty
 //                     ? Container()
-//                     : DropdownButtonFormField<String>(
+//                     : DropdownButtonFormField<String>(  /// upazila
 //                   value: selectUpazila,
 //                   onChanged: (String? newValue) {
 //                     // selectUpazila = newValue!;
 //
 //                     // setState(() {});
+//                     setState(() {
+//                       selectUpazila = newValue!;
+//                     });
 //                   },
 //                   items: [
 //                     'Select your upazila', // Initial text
@@ -368,17 +387,21 @@
 //     }
 //   }
 // }
-//
-//
-//
-//
-// ///
-// ///
-// ///
-// ///
-// ///
-// ///
-// ///
+
+
+///
+///
+///
+///
+///
+///
+
+
+///
+///
+///
+///
+///
 
 
 
@@ -407,8 +430,7 @@ class _SignupPageState extends State<SignupPage> {
   final TextEditingController cityController = TextEditingController();
   final TextEditingController dobController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordController =
-  TextEditingController();
+  final TextEditingController confirmPasswordController = TextEditingController();
   Map<String, dynamic> data = {};
   final List<String> bloodGroups = [
     'A+',
@@ -438,8 +460,8 @@ class _SignupPageState extends State<SignupPage> {
   }
 
   Future<void> districtsJson() async {
-    final String response = await rootBundle
-        .loadString('assets/Location/bd-districts.json');
+    final String response =
+    await rootBundle.loadString('assets/Location/bd-districts.json');
     data = await json.decode(response);
 
     districts.clear();
@@ -449,7 +471,6 @@ class _SignupPageState extends State<SignupPage> {
     for (String division in data.keys) {
       divisions.add(division);
     }
-    print('Divisions: $divisions}');
   }
 
   void _selectDate(BuildContext context) async {
@@ -561,16 +582,13 @@ class _SignupPageState extends State<SignupPage> {
                   decoration: InputDecoration(labelText: 'Blood Group'),
                 ),
                 SizedBox(height: 10.0),
-
                 DropdownButtonFormField<String>(
                   value: selectedDivision,
                   onChanged: (String? newValue) {
                     if (newValue == "Select your division") {
                       districts.clear();
                       upazilas.clear();
-                      setState(() {
-
-                      });
+                      setState(() {});
                     } else {
                       districts.clear();
                       upazilas.clear();
@@ -583,7 +601,6 @@ class _SignupPageState extends State<SignupPage> {
                     setState(() {
                       selectedDivision = newValue!;
                       selectDistrict = 'Select your districts';
-                      // selectedDivision = 'Select your districts';
                     });
                   },
                   items: [
@@ -598,24 +615,21 @@ class _SignupPageState extends State<SignupPage> {
                   decoration: InputDecoration(labelText: 'Division Location'),
                 ),
                 SizedBox(height: 10.0),
-
                 districts.isEmpty
                     ? Container()
-                    : DropdownButtonFormField<String>(  ///district
+                    : DropdownButtonFormField<String>(
                   value: selectDistrict,
                   onChanged: (String? newValue) {
                     upazilas = [];
                     upazilas.clear();
                     selectDistrict = newValue!;
-                    upazilas.addAll(data[selectedDivision][selectDistrict].cast<String>());
-                    // setState(() {});
-                  setState(() {
-                    selectDistrict = newValue;
-                    selectUpazila = 'Select your upazila';
-
-                  });
+                    upazilas.addAll(
+                        data[selectedDivision][selectDistrict].cast<String>());
+                    setState(() {
+                      selectDistrict = newValue;
+                      selectUpazila = 'Select your upazila';
+                    });
                   },
-
                   items: [
                     'Select your districts', // Initial text
                     ...districts,
@@ -629,16 +643,11 @@ class _SignupPageState extends State<SignupPage> {
                   InputDecoration(labelText: 'District Location'),
                 ),
                 SizedBox(height: 10.0),
-
-
                 upazilas.isEmpty
                     ? Container()
-                    : DropdownButtonFormField<String>(  /// upazila
+                    : DropdownButtonFormField<String>(
                   value: selectUpazila,
                   onChanged: (String? newValue) {
-                    // selectUpazila = newValue!;
-
-                    // setState(() {});
                     setState(() {
                       selectUpazila = newValue!;
                     });
@@ -648,7 +657,6 @@ class _SignupPageState extends State<SignupPage> {
                     ...upazilas,
                   ].map<DropdownMenuItem<String>>((String value) {
                     return DropdownMenuItem<String>(
-                      // value: value,
                       value: value,
                       child: Text(value),
                     );
@@ -656,7 +664,6 @@ class _SignupPageState extends State<SignupPage> {
                   decoration:
                   InputDecoration(labelText: 'Upazila Location'),
                 ),
-
                 SizedBox(height: 10.0),
                 Row(
                   children: [
@@ -711,7 +718,6 @@ class _SignupPageState extends State<SignupPage> {
                   onChanged: _validatePasswordMatch,
                 ),
                 SizedBox(height: 10.0),
-
                 // Checkbox for willingness to donate blood
                 Row(
                   children: [
@@ -726,7 +732,6 @@ class _SignupPageState extends State<SignupPage> {
                     Text("I'm willing to donate blood"),
                   ],
                 ),
-
                 SizedBox(height: 10.0),
                 ElevatedButton(
                   onPressed: _signUp,
@@ -760,7 +765,24 @@ class _SignupPageState extends State<SignupPage> {
 
   Future<void> saveUserData(String uid) async {
     var root = firestore.collection("UserList").doc(uid);
-    UserModel userModel = UserModel(uid, "asdlkjf");
+    int accountOpeningDate = DateTime.now().millisecondsSinceEpoch;
+
+    // DateTime createdDate = DateTime.fromMillisecondsSinceEpoch(millisecondsSinceEpoch);
+    // String accountOpening = "${DateTime.now().day.toStringAsFixed(2)}/${DateTime.now().month.toStringAsFixed(2)}/${DateTime.now().year.toStringAsFixed(4)}";
+    UserModel userModel = UserModel(
+      uid,
+      nameController.text,
+      emailController.text,
+      mobileController.text,
+      selectedBloodGroup,
+      selectedDivision,
+      selectDistrict,
+      selectUpazila,
+      selectedDateText,
+      "",
+      willingToDonate,
+      accountOpeningDate,
+    );
     try {
       await root.set(userModel.toJson());
     } on Exception catch (error) {
@@ -771,15 +793,3 @@ class _SignupPageState extends State<SignupPage> {
     }
   }
 }
-
-
-
-
-///
-///
-///
-///
-
-
-
-
