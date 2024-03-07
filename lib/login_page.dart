@@ -140,6 +140,7 @@
 ///
 
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'signup_page.dart';
@@ -229,6 +230,7 @@ class LoginPage extends StatelessWidget {
                           snackPosition: SnackPosition.BOTTOM);
                     } else {
                       // Email and password are valid, proceed with login
+                      FirebaseAuth.instance.signInWithEmailAndPassword(email: emailController.text, password: passwordController.text);
                       Get.to(() => DashboardPage());
                       // Handle login logic using emailController.text and passwordController.text
                     }

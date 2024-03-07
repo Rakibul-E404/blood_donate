@@ -1,233 +1,3 @@
-// import 'package:flutter/material.dart';
-// import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
-//
-// class DashboardPage extends StatefulWidget {
-//   @override
-//   _DashboardPageState createState() => _DashboardPageState();
-// }
-//
-// class _DashboardPageState extends State<DashboardPage> {
-//   int _currentIndex = 0;
-//
-//   final List<Widget> _pages = [
-//     HomeWidget(),
-//     SearchWidget(),
-//     AddPostWidget(),
-//     MessagesWidget(),
-//     ProfileWidget(),
-//   ];
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text('Dashboard'),
-//       ),
-//       body: _pages[_currentIndex],
-//       bottomNavigationBar: AnimatedBottomNavigationBar(
-//         icons: [
-//           Icons.home,
-//           Icons.search,
-//           Icons.add_circle_outline,
-//           Icons.message,
-//           Icons.person,
-//         ],
-//         activeIndex: _currentIndex,
-//         onTap: (index) => setState(() => _currentIndex = index),
-//       ),
-//     );
-//   }
-// }
-//
-// class HomeWidget extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Center(
-//       child: Text('Home Page'),
-//     );
-//   }
-// }
-//
-// class SearchWidget extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Center(
-//       child: Text('Search Page'),
-//     );
-//   }
-// }
-//
-// class AddPostWidget extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Center(
-//       child: Text('Add Post Page'),
-//     );
-//   }
-// }
-//
-// class MessagesWidget extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Center(
-//       child: Text('Messages Page'),
-//     );
-//   }
-// }
-//
-// class ProfileWidget extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Center(
-//       child: Text('Profile Page'),
-//     );
-//   }
-// }
-
-///
-///
-
-///
-///
-///
-///
-
-// import 'package:flutter/material.dart';
-// import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
-//
-// class DashboardPage extends StatefulWidget {
-//   @override
-//   _DashboardPageState createState() => _DashboardPageState();
-// }
-//
-// class _DashboardPageState extends State<DashboardPage> {
-//   int _currentIndex = 0;
-//
-//   final List<Widget> _pages = [
-//     HomeWidget(),
-//     SearchWidget(),
-//     AddPostWidget(),
-//     MessagesWidget(),
-//     ProfileWidget(),
-//   ];
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         automaticallyImplyLeading: true,
-//         title: Text('Dashboard'),
-//       ),
-//       body: _pages[_currentIndex],
-//       bottomNavigationBar: SalomonBottomBar(
-//         currentIndex: _currentIndex,
-//         onTap: (index) => setState(() => _currentIndex = index),
-//         items: [
-//           SalomonBottomBarItem(
-//             icon: SizedBox(
-//               width: 20,
-//               height: 30,
-//               child: Icon(Icons.home),
-//             ),
-//             title: Text('Home'),
-//           ),
-//           SalomonBottomBarItem(
-//             icon: SizedBox(
-//               width: 20,
-//               height: 30,
-//               child: Icon(Icons.search),
-//             ),
-//             title: Text('Search'),
-//           ),
-//           SalomonBottomBarItem(
-//             icon: SizedBox(
-//               width: 20,
-//               height: 30,
-//               child: Icon(Icons.add_circle_outline),
-//             ),
-//             title: Text('Add Post'),
-//           ),
-//           SalomonBottomBarItem(
-//             icon: SizedBox(
-//               width: 20,
-//               height: 30,
-//               child: Icon(Icons.message),
-//             ),
-//             title: Text('Messages'),
-//           ),
-//           SalomonBottomBarItem(
-//             icon: SizedBox(
-//               width: 20,
-//               height: 30,
-//               child: Icon(Icons.person),
-//             ),
-//             title: Text('Profile'),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
-//
-// class HomeWidget extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Center(
-//       child: Text('Home Page'),
-//     );
-//   }
-// }
-//
-// class SearchWidget extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Center(
-//       child: Text('Search Page'),
-//     );
-//   }
-// }
-//
-// class AddPostWidget extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Center(
-//       child: Text('Add Post Page'),
-//     );
-//   }
-// }
-//
-// class MessagesWidget extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Center(
-//       child: Text('Messages Page'),
-//     );
-//   }
-// }
-//
-// class ProfileWidget extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Center(
-//       child: Text('Profile Page'),
-//     );
-//   }
-// }
-
-///
-///
-///
-///
-
-///
-///
-///
-///
-
-
-
-
-
 import 'dart:io';
 import 'package:blood_donate/login_page.dart';
 import 'package:flutter/material.dart';
@@ -289,33 +59,33 @@ class _DashboardPageState extends State<DashboardPage> {
                     right: 10,
                     bottom: 10,
                     child: InkWell(
-                    onTap: (){
-                      Get.bottomSheet(
-                        SizedBox(
-                          height: 120,
-                          width: Get.width,
-                          child: Column(
-                            children: [
-                              ListTile(
-                                onTap: (){
-                                  pickImage(true);
-                                },
-                                leading: Icon(Icons.camera),
-                                title: Text("Take Picture"),
-                              ),
-                              ListTile(
-                                onTap: (){
-                                  pickImage(false);
-                                },
-                                leading: Icon(Icons.image),
-                                title: Text("Choose from gallery"),
-                              ),
+                        onTap: (){
+                          Get.bottomSheet(
+                            SizedBox(
+                              height: 120,
+                              width: Get.width,
+                              child: Column(
+                                children: [
+                                  ListTile(
+                                    onTap: (){
+                                      pickImage(true);
+                                    },
+                                    leading: Icon(Icons.camera),
+                                    title: Text("Take Picture"),
+                                  ),
+                                  ListTile(
+                                    onTap: (){
+                                      pickImage(false);
+                                    },
+                                    leading: Icon(Icons.image),
+                                    title: Text("Choose from gallery"),
+                                  ),
 
-                            ],
-                          ),
-                        ),
-                      );
-                    },
+                                ],
+                              ),
+                            ),
+                          );
+                        },
                         child: Icon(Icons.add_a_photo,size: 25.0,)),
                   ),
                 ],
@@ -463,8 +233,3 @@ class ProfileWidget extends StatelessWidget {
     );
   }
 }
-
-
-
-
-
