@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:blood_donate/login_page.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -28,17 +29,17 @@ class _DashboardPageState extends State<DashboardPage> {
     return Scaffold(
       // backgroundColor: Colors.red[100],
 
-      appBar: AppBar(
-        automaticallyImplyLeading: true,
-        title: Text('Dashboard'),
-      ),
+      // appBar: AppBar(
+      //   automaticallyImplyLeading: true,
+      //   title: Text('Dashboard'),
+      // ),
 
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
             DrawerHeader(
-              padding: EdgeInsets.all(20.0),
+              padding: const EdgeInsets.all(20.0),
               //Image set
 
               decoration: BoxDecoration(
@@ -46,20 +47,21 @@ class _DashboardPageState extends State<DashboardPage> {
               ),
               child: Stack(
                 children: [
-
                   Positioned(
                     right: 10,
                     bottom: 10,
                     child: CircleAvatar(
                       radius: 40,
-                      backgroundImage: selectedImageFile == null? const AssetImage("assets/images/BloodCells.jpg") : Image.file(File(selectedImageFile!.path)).image,
+                      backgroundImage: selectedImageFile == null
+                          ? const AssetImage("assets/images/BloodCells.jpg")
+                          : Image.file(File(selectedImageFile!.path)).image,
                     ),
                   ),
                   Positioned(
                     right: 10,
                     bottom: 10,
                     child: InkWell(
-                        onTap: (){
+                        onTap: () {
                           Get.bottomSheet(
                             SizedBox(
                               height: 120,
@@ -67,39 +69,43 @@ class _DashboardPageState extends State<DashboardPage> {
                               child: Column(
                                 children: [
                                   ListTile(
-                                    onTap: (){
+                                    onTap: () {
                                       pickImage(true);
                                     },
-                                    leading: Icon(Icons.camera),
-                                    title: Text("Take Picture"),
+                                    leading: const Icon(
+                                      Icons.camera,
+                                      size: 10.0,
+                                    ),
+                                    title: const Text("Take Picture"),
                                   ),
                                   ListTile(
-                                    onTap: (){
+                                    onTap: () {
                                       pickImage(false);
                                     },
-                                    leading: Icon(Icons.image),
-                                    title: Text("Choose from gallery"),
+                                    leading: const Icon(Icons.image),
+                                    title: const Text("Choose from gallery"),
                                   ),
-
                                 ],
                               ),
                             ),
                           );
                         },
-                        child: Icon(Icons.add_a_photo,size: 25.0,)),
+                        child: const Icon(
+                          Icons.add_a_photo,
+                          size: 25.0,
+                        )),
                   ),
                 ],
               ),
-
             ),
             ListTile(
-              title: Text('Item 1'),
+              title: const Text('Item 1'),
               onTap: () {
                 Get.to(() => LoginPage());
               },
             ),
             ListTile(
-              title: Text('Item 2'),
+              title: const Text('Item 2'),
               onTap: () {
                 // Handle item 2 tap
               },
@@ -109,7 +115,7 @@ class _DashboardPageState extends State<DashboardPage> {
       ),
       // body: _pages[_currentIndex],
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: NetworkImage(
                 "https://png.pngtree.com/png-vector/20230414/ourmid/pngtree-blood-drop-blood-red-cartoon-illustration-png-image_6694336.png"),
@@ -124,65 +130,63 @@ class _DashboardPageState extends State<DashboardPage> {
         onTap: (index) => setState(() => _currentIndex = index),
         items: [
           SalomonBottomBarItem(
-            icon: SizedBox(
+            icon: const SizedBox(
               width: 20,
               height: 30,
               child: Icon(Icons.home),
             ),
-            title: Text('Home'),
+            title: const Text('Home'),
           ),
           SalomonBottomBarItem(
-            icon: SizedBox(
+            icon: const SizedBox(
               width: 20,
               height: 30,
               child: Icon(Icons.search),
             ),
-            title: Text('Search'),
+            title: const Text('Search'),
           ),
           SalomonBottomBarItem(
-            icon: SizedBox(
+            icon: const SizedBox(
               width: 20,
               height: 30,
-              child: Icon(Icons.add_circle_outline),
+              child: Icon(Icons.water_drop_outlined),
             ),
-            title: Text('Add Post'),
+            title: const Text('Asked Help'),
           ),
           SalomonBottomBarItem(
-            icon: SizedBox(
+            icon: const SizedBox(
               width: 20,
               height: 30,
               child: Icon(Icons.message),
             ),
-            title: Text('Messages'),
+            title: const Text('Messages'),
           ),
           SalomonBottomBarItem(
-            icon: SizedBox(
+            icon: const SizedBox(
               width: 20,
               height: 30,
               child: Icon(Icons.person),
             ),
-            title: Text('Profile'),
+            title: const Text('Profile'),
           ),
         ],
       ),
     );
   }
 
-
-  Future<void> pickImage(bool isCamera) async{
+  Future<void> pickImage(bool isCamera) async {
     final imagePicker = ImagePicker();
-    if(isCamera){
-      selectedImageFile = await imagePicker.pickImage(source: ImageSource.camera);
-    }
-    else{
-      selectedImageFile = await imagePicker.pickImage(source: ImageSource.gallery);
+    if (isCamera) {
+      selectedImageFile =
+          await imagePicker.pickImage(source: ImageSource.camera);
+    } else {
+      selectedImageFile =
+          await imagePicker.pickImage(source: ImageSource.gallery);
     }
     Get.back();
-    setState(() {
+    setState(() {});
 
-    });
-
-    if(selectedImageFile != null){
+    if (selectedImageFile != null) {
       print(selectedImageFile!.name);
       print(selectedImageFile!.path);
     }
@@ -192,8 +196,11 @@ class _DashboardPageState extends State<DashboardPage> {
 class HomeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text('Home Page'),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Home"),
+        automaticallyImplyLeading: false,
+      ),
     );
   }
 }
@@ -201,8 +208,11 @@ class HomeWidget extends StatelessWidget {
 class SearchWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text('Search Page'),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Search"),
+        automaticallyImplyLeading: false,
+      ),
     );
   }
 }
@@ -210,8 +220,11 @@ class SearchWidget extends StatelessWidget {
 class AddPostWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text('Add Post Page'),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Asked Help"),
+        automaticallyImplyLeading: false,
+      ),
     );
   }
 }
@@ -219,17 +232,135 @@ class AddPostWidget extends StatelessWidget {
 class MessagesWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text('Messages Page'),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Message"),
+        automaticallyImplyLeading: false,
+      ),
     );
   }
 }
 
+///Profile Page Design
 class ProfileWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text('Profile Page'),
-    );
+    var bloodDonationCount = 0;
+    var nextDonateTime = 30;
+    return Scaffold(
+        appBar: AppBar(
+          title: const Text("Profile"),
+          automaticallyImplyLeading: false,
+        ),
+        body: Column(
+          children: [
+            Row(
+              children: [
+                Container(
+                  alignment: Alignment.center,
+                  width: Get.width,
+                  child: const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        CircleAvatar(
+                          radius: 40.0,
+                          backgroundImage:
+                              AssetImage("assets/images/BloodCells.jpg"),
+                        ),
+                        SizedBox(height: 8.0),
+                        // Add some vertical spacing between the CircleAvatar and Text
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            // Add some horizontal spacing between the icon and text
+
+                            Text(
+                              "S. M. Rakibul Alam",
+                              style: TextStyle(
+                                fontSize: 16.0,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            // Spacer(),
+                            SizedBox(
+                              width: 5.0,
+                            ),
+                            Icon(
+                              Icons.edit_outlined,
+                              color: Colors.black,
+                            ),
+
+                          ],
+
+                        ),
+                      ],
+                    ),
+
+                  ),
+                )
+              ],
+            ),
+
+            const SizedBox(
+              height: 10.0,
+            ),
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "Gender | Age",
+                  softWrap: true,
+                  style: TextStyle(fontSize: 16),
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 30.0,
+            ),
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "Personal Information",
+                  style: TextStyle(
+                    fontSize: 20.0,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 20.0,
+            ),
+            Row(
+              children: [
+                Container(
+                  width: Get.width,
+                  height: 180,
+                  child: Card(
+                    color: Colors.red[100],
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.zero,
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(5.0, 10.0, 5.0, 10.0),
+                      child: Text(
+                        "\nBlood Donation Time: $bloodDonationCount\n\nYou Can Donate After $nextDonateTime days",
+                        style: const TextStyle(
+                          fontSize: 20,
+                        ),
+                      ),
+                    ),
+                  ),
+
+                )
+              ],
+            )
+          ],
+
+        ));
   }
+
 }
+
+
