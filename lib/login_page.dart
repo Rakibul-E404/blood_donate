@@ -89,7 +89,8 @@ class LoginPage extends StatelessWidget {
                     } else {
                       // Email and password are valid, proceed with login
                       FirebaseAuth.instance.signInWithEmailAndPassword(email: emailController.text, password: passwordController.text);
-                      Get.to(() => DashboardPage());
+                      // Get.to(() => DashboardPage());
+                      Get.to(()=> ProfileWidget());
                       // Handle login logic using emailController.text and passwordController.text
                     }
                   },
